@@ -16,6 +16,6 @@ pub mod amm_anchor {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        initialize::handler(ctx)
+        Ok(())
     }
 }
