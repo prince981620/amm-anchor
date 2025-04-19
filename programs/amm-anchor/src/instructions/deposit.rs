@@ -92,6 +92,8 @@ impl <'info> Deposit <'info> {
         require!(self.config.locked == false, AmmError::PoolLocked);
         require!(amount != 0, AmmError::InvalidAmount);
 
+
+
         // checking if this is the first deposit then -> we dont need to calculate stuff from the curve because rn curve doesnt exit this deposit will make the curve so we can directly do it
         let (x,y) = match self.mint_lp.supply == 0 && self.vault_x.amount == 0 && self.vault_y.amount == 0 {
             true => (max_x, max_y), // curve doenst exist
