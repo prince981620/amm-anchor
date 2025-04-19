@@ -27,6 +27,7 @@ pub struct Withdraw <'info> {
     pub config: Account<'info, Config>,
 
     #[account(
+        mut,
         seeds = [b"lp", config.key().as_ref()],
         bump = config.lp_bump
     )]
@@ -91,7 +92,7 @@ impl <'info> Withdraw <'info> {
             6
         ).map_err(AmmError::from)?;
 
-        require!(min_x <= amounts.x && min_y <= amounts.y, AmmError::SlippageExceded);
+        require!(amounts.x <= min_x  && amounts.y <= min_y , AmmError::SlippageExceded);
 
         self.withdraw_tokens(true, amount)?;
         self.withdraw_tokens(false, amount)?;
@@ -123,7 +124,7 @@ impl <'info> Withdraw <'info> {
 
         let signer_seeds = &[&seeds[..]];
 
-        let ctx = CpiContext::new_with_signer(cpi_program, cpi_accounts,signer_seeds);
+        let ctx = CpiContext::new_with_signer(cpi_program, cpi_accounts, signer_seeds);
 
         transfer(ctx, amount) // transfer checkerd is depreciatred for token interface but we are using tokenaccount
     }

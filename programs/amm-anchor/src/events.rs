@@ -47,6 +47,8 @@ pub struct LockEvent {
     pub user: Pubkey,
     pub config: Pubkey
 }
+
+#[event]
 pub struct UnlockEvent {
     pub user: Pubkey,
     pub config: Pubkey

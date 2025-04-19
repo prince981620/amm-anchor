@@ -54,7 +54,7 @@ pub mod amm_anchor {
         Ok(())
     }
 
-    pub fn swap(ctx: Context<Swap>,is_x: bool, amount: u64, min: u64) -> Result<()> {
+    pub fn swap(ctx: Context<Swap>, is_x: bool, amount: u64, min: u64) -> Result<()> {
         ctx.accounts.swap(is_x,amount,min)?;
 
         emit!(SwapEvent {
@@ -107,7 +107,7 @@ pub mod amm_anchor {
     pub fn unlock(ctx: Context<Update>) -> Result<()> {
         ctx.accounts.unlock()?;
 
-        emit!(LockEvent {
+        emit!(UnlockEvent {
             user: ctx.accounts.user.key(),
             config: ctx.accounts.config.key(),
         });

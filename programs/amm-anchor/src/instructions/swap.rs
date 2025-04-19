@@ -83,7 +83,7 @@ impl <'info> Swap <'info> {
             true => LiquidityPair::X,
             false => LiquidityPair::Y
         };
-        let res = curve.swap(p,amount,min).map_err(AmmError::from)?;
+        let res = curve.swap(p, amount, min).map_err(AmmError::from)?;
 
         require!(res.deposit != 0 && res.withdraw !=0 , AmmError::InvalidAmount);
 
@@ -135,7 +135,7 @@ impl <'info> Swap <'info> {
         let cpi_accounts = Transfer {
             from,
             to,
-            authority: self.user.to_account_info()
+            authority: self.config.to_account_info()
         };
 
         let seeds = &[
