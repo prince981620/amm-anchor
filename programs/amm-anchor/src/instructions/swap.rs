@@ -1,9 +1,8 @@
 use anchor_lang::prelude::*;
 
-use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
-    token::{mint_to, transfer, Mint, MintTo, Token, TokenAccount, Transfer}
+    token::{transfer, Mint, Token, TokenAccount, Transfer}
 };
 
 use crate::{error::AmmError,state::Config};
